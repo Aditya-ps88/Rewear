@@ -1,0 +1,26 @@
+## 📝 **.gitignore**
+*(for Node, Django, Python, OS files)*
+```gitignore
+# Node
+node_modules/
+build/
+dist/
+
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+
+# Django env & media
+.env
+media/
+staticfiles/
+
+# VSCode / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
