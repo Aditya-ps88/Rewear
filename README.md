@@ -9,8 +9,8 @@ Develop ReWear, a web-based platform that enables users to exchange unused cloth
 <br>
 <h3>Team Members</h3>
 <h4>🎨 Leader: Aditya Prakash Singh 
-<br>    Email: prakashaditya113@gmail.com</h4><br>
-<h4></> Member 1: Manish Suthar 
-<br>    Email: manishsuthar.dev@gmail.com</h4><br>
+<br>   <br> Email: prakashaditya113@gmail.com</h4><br><br>
+<h4>💻Member 1: Manish Suthar 
+<br> <br>   Email: manishsuthar.dev@gmail.com</h4><br><br>
 <h4>🗄️ Member 2: Dev Rajesh Gupta 
-<br>    Email: devrajsinhgharia2007@gmail.com</h4>
+<br>  <br>  Email: devrajsinhgharia2007@gmail.com</h4>
