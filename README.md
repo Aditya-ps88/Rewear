@@ -88,8 +88,8 @@ python manage.py runserver
 <img src='./demo/15.png'>
 <img src='./demo/16.png'>
 
-## This the Demo Video ReWear Project By Odoo
->https://drive.google.com/file/d/1pEM2J8KAT0FCSwz-uMhDfDrplTZI7Wzv/view?usp=sharing
+## This the Demo Video ReWear Project By Odoo(due to quality issue we changed to higher resolution video)
+>https://drive.google.com/drive/folders/1mlVxsdEo9nd5SnYsVKxIyFYtSlXait3w
 
 ## 🚀 **Goal**
 > Make sustainable fashion accessible and fun by building a trusted, user-friendly platform to swap and reuse clothes instead of letting them go to waste.
