@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import ClothingItem, SwapRequest
+from .models import ClothingItem
 # Register your models here.
 
 admin.site.register(ClothingItem)
-admin.site.register(SwapRequest)
