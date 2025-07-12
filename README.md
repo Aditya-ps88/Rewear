@@ -79,6 +79,14 @@ python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 ```
+## ScreenShots
+
+<img src='./demo/11.png'>
+<img src='./demo/12.png'>
+<img src='./demo/13.png'>
+<img src='./demo/14.png'>
+<img src='./demo/15.png'>
+<img src='./demo/16.png'>
 
 
 ## 🚀 **Goal**
