@@ -1,5 +1,5 @@
 {
    "python.analysis.extraPaths": [
-    "C:/Users/Dev/Desktop/Rewear/odoo-17.0/odoo"
+     "./venv/Lib/site-packages"
 ]
 }   

@@ -1,3 +1,78 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+*.pyd
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# If using PostgreSQL or MySQL, ignore .env or config secrets
+.env
+.env.*
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# VSCode settings
+.vscode/
+
+# Pytest
+.cache/
+*.cover
+.coverage
+coverage.xml
+htmlcov/
+
+# mypy
+.mypy_cache/
+
+# Pyre
+.pyre/
+
+# Pylint
+pylint-report.txt
+pylint-global.txt
+
+# pip tools
+pip-log.txt
+
+# pytest
+.pytest_cache/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# System files
+Thumbs.db
+.DS_Store
 ## 📝 **.gitignore**
 *(for Node, Django, Python, OS files)*
 ```gitignore
