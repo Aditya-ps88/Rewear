@@ -1,16 +1,64 @@
-# Rewear
-<h1> ODOO HACKATHON 2025 </h1>
-<br>
-<h3>Problem Statement: ReWear - Community Clothing Exchange </h3>
-<br>
-<p>Overview:
-<br>
-Develop ReWear, a web-based platform that enables users to exchange unused clothing through direct swaps or a point-based redemption system. The goal is to promote sustainable fashion and reduce textile waste by encouraging users to reuse wearable garments instead of discarding them.</p>
-<br>
-<h3>Team Members</h3>
-<h4>🎨 Leader: Aditya Prakash Singh 
-<br>   <br> Email: prakashaditya113@gmail.com</h4><br><br>
-<h4>💻Member 1: Manish Suthar 
-<br> <br>   Email: manishsuthar.dev@gmail.com</h4><br><br>
-<h4>🗄️ Member 2: Dev Rajesh Gupta 
-<br>  <br>  Email: devrajsinhgharia2007@gmail.com</h4>
+# ♻️ **ReWear**
+### 🌿 *Odoo Hackathon 2025*
+
+---
+
+## 🧵 **Problem Statement:**
+**ReWear – Community Clothing Exchange**
+
+> Develop ReWear, a web-based platform that enables users to exchange unused clothing  
+> through direct swaps or a point-based redemption system.  
+> The goal is to promote sustainable fashion 🌱 and reduce textile waste by encouraging  
+> users to reuse wearable garments instead of discarding them.
+
+---
+
+## ✨ **Overview**
+ReWear connects eco-conscious communities and promotes circular fashion through:
+- 📦 **Direct Swaps** between users
+- 🎟 **Point-based redemptions**
+- 📸 Easy item listing with photos & tags
+- 🛡️ Admin moderation to keep listings clean and safe
+
+Built as a custom **Odoo module** using:
+- 💻 **QWeb templating + Tailwind CSS / Bootstrap**
+- 🐘 **PostgreSQL** (via Odoo ORM)
+- 🧩 **Extended res.users** model for profile & points
+- 🖼 **Odoo media upload** for item images
+
+---
+
+## 👥 **Team Members**
+
+| Role | Name | ✉️ Email |
+|--|--|--|
+| 🎨 Leader | **Aditya Prakash Singh** | prakashaditya113@gmail.com |
+| 💻 Member 1 | **Manish Suthar** | manishsuthar.dev@gmail.com |
+| 🗄️ Member 2 | **Dev Rajesh Gupta** | devrajsinhgharia2007@gmail.com |
+
+---
+
+## 🌱 **Mockup & UI Preview**
+Check our interactive mockup 👉 [Excalidraw Link](https://app.excalidraw.com/l/65VNwvy7c4X/zEqG7IJrg0)
+
+---
+
+## ⚙️ **Tech Stack**
+- Backend: 🐍 **Odoo Custom Module (Python)**
+- Frontend: 🖼 **QWeb Templates** + Tailwind CSS / Bootstrap
+- Database: 🐘 **PostgreSQL**
+- Authentication: 🔒 **Odoo Users Model**
+- Media: 🖼 **Odoo File Upload**
+
+---
+
+## 🚀 **Goal**
+> Make sustainable fashion accessible and fun by building a trusted, user-friendly platform to swap and reuse clothes instead of letting them go to waste.
+
+---
+
+## ❤️‍🔥 **Special Thanks**
+To **Odoo Hackathon 2025** for inspiring us to build for sustainability and circular fashion! ✨
+
+---
+
