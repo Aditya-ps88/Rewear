@@ -1,26 +1,75 @@
-## 📝 **.gitignore**
-*(for Node, Django, Python, OS files)*
-```gitignore
-# Node
-node_modules/
-build/
-dist/
-
-# Python
-*.pyc
+# Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyo
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
 *.pyd
-*.db
-*.sqlite3
 
-# Django env & media
-.env
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
 media/
-staticfiles/
 
-# VSCode / OS
+# If using PostgreSQL or MySQL, ignore .env or config secrets
+.env
+.env.*
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# VSCode settings
 .vscode/
-.idea/
-.DS_Store
+
+# Pytest
+.cache/
+*.cover
+.coverage
+coverage.xml
+htmlcov/
+
+# mypy
+.mypy_cache/
+
+# Pyre
+.pyre/
+
+# Pylint
+pylint-report.txt
+pylint-global.txt
+
+# pip tools
+pip-log.txt
+
+# pytest
+.pytest_cache/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# System files
 Thumbs.db
+.DS_Store
