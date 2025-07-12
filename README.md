@@ -43,15 +43,27 @@ Check our interactive mockup 👉 [Excalidraw Link](https://app.excalidraw.com/l
 
 ---
 
-## ⚙️ **Tech Stack**
-- Backend: 🐍 **Odoo Custom Module (Python)**
-- Frontend: 🖼 **QWeb Templates** + Tailwind CSS / Bootstrap
-- Database: 🐘 **PostgreSQL**
-- Authentication: 🔒 **Odoo Users Model**
-- Media: 🖼 **Odoo File Upload**
+## 🛠 Tech Stack
+| Layer      | Tech                                                           |
+|:----------:|:----------------------------------------------------------------:|
+| Backend   | Django 4.2+, Django REST Framework, PostgreSQL                  |
+| Frontend  | React 18+, React Router, Tailwind CSS, Axios                    |
+| Auth      | Django built-in User (customized with points)                   |
+| Admin     | Django Admin                                                    |
 
 ---
 
+## ⚙️ Local Setup
+1. Clone repo  
+2. Setup backend:
+```bash
+cd backend
+cp .env.example .env
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+```
 ## 🚀 **Goal**
 > Make sustainable fashion accessible and fun by building a trusted, user-friendly platform to swap and reuse clothes instead of letting them go to waste.
 
