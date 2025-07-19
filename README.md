@@ -20,13 +20,6 @@ ReWear connects eco-conscious communities and promotes circular fashion through:
 - 📸 Easy item listing with photos & tags
 - 🛡️ Admin moderation to keep listings clean and safe
 
-Built as a custom **Odoo module** using:
-- 💻 **QWeb templating + Tailwind CSS / Bootstrap**
-- 🐘 **PostgreSQL** (via Odoo ORM)
-- 🧩 **Extended res.users** model for profile & points
-- 🖼 **Odoo media upload** for item images
-
----
 
 ## 👥 **Team Members**
 
@@ -43,19 +36,41 @@ Check our interactive mockup 👉 [Excalidraw Link](https://app.excalidraw.com/l
 
 ---
 
-## 🛠 Tech Stack
-| Layer      | Tech                                                           |
-|:----------:|:----------------------------------------------------------------:|
-| Backend   | Django 4.2+, Django REST Framework, PostgreSQL                  |
-| Frontend  | React 18+, React Router, Tailwind CSS, Axios                    |
-| Auth      | Django built-in User (customized with points)                   |
-| Admin     | Django Admin                                                    |
+## ✨ Features
+
+- ⚛️ Built with React + Vite + TypeScript
+- 🎨 Styled using Tailwind CSS & shadcn/ui
+- 🧩 Radix UI primitives for accessibility
+- 📦 React Query for data fetching & caching
+- 🧰 Modern login page & component structure
+- ⚡ Fast builds & great DX
+- 📱 Mobile-first & responsive design
 
 ---
 
-## ⚙️ Local Setup
-1. Clone repo  
-2. Setup backend:
+## 📦 Tech Stack
+
+| Tech                          | Purpose                                    |
+|------------------------------:|--------------------------------------------:|
+| React + TypeScript           | Frontend framework                         |
+| Vite                         | Build tool & dev server                    |
+| Tailwind CSS                 | Utility-first styling                      |
+| shadcn/ui                    | Prebuilt, accessible UI components         |
+| Radix UI                     | Low-level UI primitives                    |
+| React Router                 | Client-side routing                        |
+| @tanstack/react-query        | API data fetching & caching                |
+
+---
+
+## 🚀 Getting Started
+
+Clone the project & install dependencies:
+
+```bash
+git clone https://github.com/Aditya-ps88/Rewear.git
+cd Rewear
+npm install
+```
 ```bash
 cd backend
 cp .env.example .env
@@ -64,6 +79,18 @@ python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 ```
+## ScreenShots
+
+<img src='./demo/11.png'>
+<img src='./demo/12.png'>
+<img src='./demo/13.png'>
+<img src='./demo/14.png'>
+<img src='./demo/15.png'>
+<img src='./demo/16.png'>
+
+## This the Demo Video ReWear Project By Odoo(due to quality issue we changed to higher resolution video)
+>https://drive.google.com/file/d/1mliPi1P8UXPT8tFRdk10CAx--Nx4hoGU/view?usp=sharing
+
 ## 🚀 **Goal**
 > Make sustainable fashion accessible and fun by building a trusted, user-friendly platform to swap and reuse clothes instead of letting them go to waste.
 
