@@ -51,7 +51,7 @@ Check our interactive mockup 👉 [Excalidraw Link](https://app.excalidraw.com/l
 ## 📦 Tech Stack
 
 | Tech                          | Purpose                                    |
-|------------------------------:|--------------------------------------------:|
+|:------------------------------|:--------------------------------------------|
 | React + TypeScript           | Frontend framework                         |
 | Vite                         | Build tool & dev server                    |
 | Tailwind CSS                 | Utility-first styling                      |
