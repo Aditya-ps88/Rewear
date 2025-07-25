@@ -1,4 +1,6 @@
 import React from 'react';
+import { auth } from '../firebase';
+
 
 const DashboardPage: React.FC = () => {
   // TODO: Replace with real user data
