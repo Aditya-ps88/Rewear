@@ -9,6 +9,7 @@ import ListItemPage from './pages/ListItemPage';
 import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import SignUpPage from './pages/SignUpPage';
+import HelpPage from './pages/HelpPage';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/help" element={<div className="min-h-screen flex items-center justify-center bg-eco-cream"><div className="text-eco-brown text-xl">Help page coming soon!</div></div>} />
+            <Route path="/help" element={<HelpPage />} />
           </Routes>
         </main>
         
