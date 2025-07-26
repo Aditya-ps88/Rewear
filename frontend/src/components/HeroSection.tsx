@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Recycle } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
+  const handleClick = (path: string) => {
+    console.log('Button clicked:', path);
+  };
+
   return (
     <section className="relative bg-eco-cream py-20 overflow-hidden">
       {/* Background Pattern */}
@@ -29,17 +33,19 @@ const HeroSection: React.FC = () => {
               while earning points for every eco-friendly exchange.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start relative z-10">
               <Link
                 to="/browse"
-                className="bg-eco-green-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-eco-green-primary/90 transition-colors flex items-center justify-center space-x-2"
+                onClick={() => handleClick('/browse')}
+                className="bg-eco-green-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-eco-green-primary/90 transition-colors flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <span>Start Browsing</span>
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 to="/list-item"
-                className="bg-eco-tan text-eco-brown px-8 py-3 rounded-full font-semibold hover:bg-eco-tan/80 transition-colors"
+                onClick={() => handleClick('/list-item')}
+                className="bg-eco-tan text-eco-brown px-8 py-3 rounded-full font-semibold hover:bg-eco-tan/80 transition-colors cursor-pointer"
               >
                 List Your Items
               </Link>
