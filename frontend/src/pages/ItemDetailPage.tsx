@@ -4,6 +4,7 @@ import { ArrowLeft, Heart, Star, User, MessageCircle } from 'lucide-react';
 import { ClothingItem } from '../types';
 import { apiService } from '../services/api';
 import { getImageUrl } from '../lib/utils';
+import { getProfilePictureUrl } from '../lib/utils';
 
 const ItemDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -106,10 +107,14 @@ const ItemDetailPage: React.FC = () => {
               </div>
 
               <div className="flex items-center space-x-2 mb-6">
-                <User className="h-4 w-4 text-gray-400" />
+                <img
+                  src={item.owner ? getProfilePictureUrl(item.owner.profile_picture_url) : getProfilePictureUrl()}
+                  alt={item.owner ? item.owner.user.username : 'Anonymous'}
+                  className="w-4 h-4 rounded-full object-cover"
+                />
                 <span className="text-gray-600">Listed by</span>
                 <span className="font-medium text-eco-brown">
-                  {item.owner ? item.owner.username : 'Anonymous'}
+                  {item.owner ? item.owner.user.username : 'Anonymous'}
                 </span>
                 <div className="flex items-center">
                   <Star className="h-4 w-4 text-eco-tan fill-current" />

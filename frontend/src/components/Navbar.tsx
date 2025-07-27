@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Recycle, User, Plus, LeafIcon, LucideLeaf, LogOut, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
+import { getProfilePictureUrl } from '../lib/utils';
 
 interface UserData {
   uid: string;
@@ -45,6 +46,12 @@ const Navbar: React.FC = () => {
     navigate('/login');
   };
 
+  const getProfilePicture = () => {
+    // For now, use the default profile picture
+    // In a real app, you'd fetch the user's profile from the backend
+    return getProfilePictureUrl();
+  };
+
   return (
     <nav className="bg-eco-cream shadow-sm border-b border-eco-green-secondary/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,15 +93,11 @@ const Navbar: React.FC = () => {
                   onClick={() => setShowUserMenu(!showUserMenu)}
                   className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-shadow"
                 >
-                  {user.photoURL ? (
-                    <img 
-                      src={user.photoURL} 
-                      alt={user.displayName || user.email}
-                      className="w-6 h-6 rounded-full"
-                    />
-                  ) : (
-                    <User className="h-5 w-5 text-eco-brown" />
-                  )}
+                  <img 
+                    src={getProfilePicture()}
+                    alt={user.displayName || user.email}
+                    className="w-6 h-6 rounded-full object-cover"
+                  />
                   <span className="text-eco-brown font-medium">
                     {user.displayName || user.email.split('@')[0]}
                   </span>

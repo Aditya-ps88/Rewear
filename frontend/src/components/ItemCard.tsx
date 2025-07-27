@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Heart, Star } from 'lucide-react';
 import { ClothingItem } from '../types';
-import { getImageUrl } from '../lib/utils';
+import { getImageUrl, getProfilePictureUrl } from '../lib/utils';
 
 interface ItemCardProps {
   item: ClothingItem;
@@ -58,14 +58,19 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
         </p>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-2">
+            <img
+              src={item.owner ? getProfilePictureUrl(item.owner.profile_picture_url) : getProfilePictureUrl()}
+              alt={item.owner ? item.owner.user.username : 'Anonymous'}
+              className="w-4 h-4 rounded-full object-cover"
+            />
             <Star className="h-4 w-4 text-eco-tan fill-current" />
             <span className="text-sm text-gray-600">
-              {item.owner ? `by ${item.owner.username}` : 'Anonymous'}
+              {item.owner ? `by ${item.owner.user.username}` : 'Anonymous'}
             </span>
           </div>
           <span className="text-xs text-gray-500 capitalize">
-            {item.category} {/* Assuming category is now correct */}
+            {item.category}
           </span>
         </div>
       </div>
