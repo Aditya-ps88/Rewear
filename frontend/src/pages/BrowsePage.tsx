@@ -36,7 +36,7 @@ const BrowsePage: React.FC = () => {
   }, [selectedCategory]);
 
   const filteredItems = items.filter(item =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     item.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 

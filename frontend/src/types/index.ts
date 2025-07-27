@@ -8,16 +8,18 @@ export interface User {
 
 export interface ClothingItem {
   id: number;
-  title: string;
+  name: string;
   description: string;
-  category: 'men' | 'women' | 'kids' | 'unisex';
+  image?: string;
+  category: 'top' | 'bottom' | 'footwear' | 'accessory' | 'other';
+  type: 'men' | 'women' | 'kids' | 'unisex';
   size: string;
-  condition: 'like-new' | 'good' | 'fair';
-  images: string[];
-  owner: User;
-  available: boolean;
-  created_at: string;
-  points_value: number;
+  condition: 'new' | 'like_new' | 'used' | 'worn_out';
+  tags: string;
+  status: 'available' | 'swapped' | 'reserved';
+  is_featured: boolean;
+  owner: User | null;
+  created_at?: string;
 }
 
 export interface SwapRequest {

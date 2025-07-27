@@ -6,6 +6,6 @@ from .serializers import ClothingItemSerializer
 class ClothingItemViewSet(viewsets.ModelViewSet):
     queryset = ClothingItem.objects.all().order_by('-id')
     serializer_class = ClothingItemSerializer
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]  # Allow all requests for testing
 
 
