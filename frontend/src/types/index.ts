@@ -4,6 +4,18 @@ export interface User {
   email: string;
   points: number;
   created_at: string;
+  profile_picture?: string;
+  profile_picture_url?: string;
+}
+
+export interface UserProfile {
+  id: number;
+  user: User;
+  profile_picture?: string;
+  profile_picture_url: string;
+  bio: string;
+  points: number;
+  created_at: string;
 }
 
 export interface ClothingItem {
@@ -18,7 +30,7 @@ export interface ClothingItem {
   tags: string;
   status: 'available' | 'swapped' | 'reserved';
   is_featured: boolean;
-  owner: User | null;
+  owner: UserProfile | null;
   created_at?: string;
 }
 

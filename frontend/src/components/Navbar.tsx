@@ -1,9 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Recycle, User, Plus, LeafIcon, LucideLeaf } from 'lucide-react';
+import { Recycle, User, Plus, LeafIcon, LucideLeaf, LogOut, ChevronDown } from 'lucide-react';
+import { Button } from './ui/button';
+
+interface UserData {
+  uid: string;
+  email: string;
+  displayName: string;
+  photoURL: string;
+}
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState<UserData | null>(null);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Get user data from localStorage
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      setUser(JSON.parse(userData));
+    }
+  }, []);
+
+  useEffect(() => {
+    // Close user menu when clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setShowUserMenu(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+    setShowUserMenu(false);
+    navigate('/login');
+  };
 
   return (
     <nav className="bg-eco-cream shadow-sm border-b border-eco-green-secondary/20">
@@ -38,15 +78,57 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Login Button */}
+          {/* User Menu / Login Button */}
           <div className="flex items-center">
-            <button
-              onClick={() => navigate('/login')}
-              className="bg-eco-tan text-eco-brown px-6 py-2 rounded-full font-medium hover:bg-eco-tan/80 transition-colors flex items-center space-x-2"
-            >
-              <User className="h-4 w-4" />
-              <span>Login</span>
-            </button>
+            {user ? (
+              <div className="relative" ref={userMenuRef}>
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-shadow"
+                >
+                  {user.photoURL ? (
+                    <img 
+                      src={user.photoURL} 
+                      alt={user.displayName || user.email}
+                      className="w-6 h-6 rounded-full"
+                    />
+                  ) : (
+                    <User className="h-5 w-5 text-eco-brown" />
+                  )}
+                  <span className="text-eco-brown font-medium">
+                    {user.displayName || user.email.split('@')[0]}
+                  </span>
+                  <ChevronDown className="h-4 w-4 text-eco-brown" />
+                </button>
+
+                {showUserMenu && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                    <Link
+                      to="/dashboard"
+                      className="block px-4 py-2 text-sm text-eco-brown hover:bg-eco-cream"
+                      onClick={() => setShowUserMenu(false)}
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-2"
+                    >
+                      <LogOut className="h-4 w-4" />
+                      <span>Logout</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Button
+                onClick={() => navigate('/login')}
+                className="bg-eco-tan text-eco-brown hover:bg-eco-tan/80 transition-colors flex items-center space-x-2"
+              >
+                <User className="h-4 w-4" />
+                <span>Login</span>
+              </Button>
+            )}
           </div>
         </div>
       </div>
