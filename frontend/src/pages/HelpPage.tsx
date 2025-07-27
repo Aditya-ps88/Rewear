@@ -10,7 +10,7 @@ const HelpPage: React.FC = () => {
         </p>
         <div className="bg-eco-tan rounded-lg p-4 text-center mb-4">
           <span className="font-semibold text-eco-brown">Support Email:</span><br />
-          <a href="mailto:support@rewear.com" className="text-eco-green-primary underline">support@rewear.com</a>
+          <a href="mailto:manishsuthar.dev@gmail.com" className="text-eco-green-primary underline">manishsuthar.dev@gmail.com</a>
         </div>
         <p className="text-center text-gray-600">
           We aim to respond to all queries within 24 hours. Thank you for being part of the ReWear community!
@@ -20,4 +20,4 @@ const HelpPage: React.FC = () => {
   );
 };
 
-export default HelpPage; 
+export default HelpPage;

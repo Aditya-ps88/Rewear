@@ -1,35 +1,60 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { apiService } from '../services/api';
 import { Upload, X } from 'lucide-react';
+import { apiService } from '../services/api';
+
+interface FormData {
+  name: string;
+  description: string;
+  category: string;
+  type: string;
+  size: string;
+  condition: string;
+  tags: string;
+  status: string;
+}
 
 const ListItemPage: React.FC = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    category: 'unisex',
-    size: '',
-    condition: 'good',
-    points_value: 50
-  });
-  const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const [images, setImages] = useState<File[]>([]);
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    description: '',
+    category: 'top',
+    type: 'unisex',
+    size: '',
+    condition: 'used',
+    tags: '',
+    status: 'available',
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      await apiService.createItem({
-        ...formData,
-        images
+      // Create FormData to send files
+      const submitData = new FormData();
+      
+      // Add all form fields
+      Object.entries(formData).forEach(([key, value]) => {
+        submitData.append(key, value);
       });
       
-      // Redirect to browse page after successful listing
+      // Add the first image (Django model only supports one image for now)
+      if (images.length > 0) {
+        submitData.append('image', images[0]);
+      }
+
+      // Send to backend
+      await apiService.createItem(submitData);
+      
+      // Redirect to browse page
       navigate('/browse');
     } catch (error) {
       console.error('Error creating item:', error);
+      alert('Failed to create item. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -38,12 +63,8 @@ const ListItemPage: React.FC = () => {
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
-      // In a real app, you'd upload these to a server
-      // For demo, we'll use placeholder URLs
-      const newImages = Array.from(files).map(() => 
-        `https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=400&r=${Math.random()}`
-      );
-      setImages([...images, ...newImages].slice(0, 5)); // Max 5 images
+      const newImages = Array.from(files);
+      setImages([...images, ...newImages].slice(0, 1)); // Only allow 1 image for now
     }
   };
 
@@ -67,8 +88,8 @@ const ListItemPage: React.FC = () => {
                 type="text"
                 required
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green-primary focus:border-transparent"
-                value={formData.title}
-                onChange={(e) => setFormData({...formData, title: e.target.value})}
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
                 placeholder="e.g., Vintage Denim Jacket"
               />
             </div>
@@ -98,7 +119,24 @@ const ListItemPage: React.FC = () => {
                   required
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green-primary focus:border-transparent"
                   value={formData.category}
-                  onChange={(e) => setFormData({...formData, category: e.target.value as any})}
+                  onChange={(e) => setFormData({...formData, category: e.target.value})}
+                >
+                  <option value="top">Top</option>
+                  <option value="bottom">Bottom</option>
+                  <option value="footwear">Footwear</option>
+                  <option value="accessory">Accessory</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-eco-brown mb-2">
+                  Type *
+                </label>
+                <select
+                  required
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green-primary focus:border-transparent"
+                  value={formData.type}
+                  onChange={(e) => setFormData({...formData, type: e.target.value})}
                 >
                   <option value="men">Men</option>
                   <option value="women">Women</option>
@@ -106,7 +144,10 @@ const ListItemPage: React.FC = () => {
                   <option value="unisex">Unisex</option>
                 </select>
               </div>
+            </div>
 
+            {/* Size and Condition */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-eco-brown mb-2">
                   Size *
@@ -117,13 +158,9 @@ const ListItemPage: React.FC = () => {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green-primary focus:border-transparent"
                   value={formData.size}
                   onChange={(e) => setFormData({...formData, size: e.target.value})}
-                  placeholder="e.g., M, L, 32, 8-10 years"
+                  placeholder="e.g., M, L, XL, 42"
                 />
               </div>
-            </div>
-
-            {/* Condition and Points */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-eco-brown mb-2">
                   Condition *
@@ -132,33 +169,34 @@ const ListItemPage: React.FC = () => {
                   required
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green-primary focus:border-transparent"
                   value={formData.condition}
-                  onChange={(e) => setFormData({...formData, condition: e.target.value as any})}
+                  onChange={(e) => setFormData({...formData, condition: e.target.value})}
                 >
-                  <option value="like-new">Like New</option>
-                  <option value="good">Good</option>
-                  <option value="fair">Fair</option>
+                  <option value="new">New</option>
+                  <option value="like_new">Like New</option>
+                  <option value="used">Used</option>
+                  <option value="worn_out">Worn Out</option>
                 </select>
               </div>
+            </div>
 
-              <div>
-                <label className="block text-sm font-medium text-eco-brown mb-2">
-                  Points Value
-                </label>
-                <input
-                  type="number"
-                  min="10"
-                  max="200"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green-primary focus:border-transparent"
-                  value={formData.points_value}
-                  onChange={(e) => setFormData({...formData, points_value: parseInt(e.target.value)})}
-                />
-              </div>
+            {/* Tags */}
+            <div>
+              <label className="block text-sm font-medium text-eco-brown mb-2">
+                Tags
+              </label>
+              <input
+                type="text"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green-primary focus:border-transparent"
+                value={formData.tags}
+                onChange={(e) => setFormData({...formData, tags: e.target.value})}
+                placeholder="e.g., vintage, denim, casual"
+              />
             </div>
 
             {/* Image Upload */}
             <div>
               <label className="block text-sm font-medium text-eco-brown mb-2">
-                Photos (up to 5)
+                Photo *
               </label>
               
               {/* Upload Button */}
@@ -166,11 +204,12 @@ const ListItemPage: React.FC = () => {
                 <label className="flex items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-eco-green-primary transition-colors">
                   <div className="text-center">
                     <Upload className="mx-auto h-8 w-8 text-gray-400 mb-2" />
-                    <span className="text-sm text-gray-600">Click to upload photos</span>
+                    <span className="text-sm text-gray-600">
+                      {images.length > 0 ? 'Click to change photo' : 'Click to upload photo'}
+                    </span>
                   </div>
                   <input
                     type="file"
-                    multiple
                     accept="image/*"
                     className="hidden"
                     onChange={handleImageUpload}
@@ -180,13 +219,13 @@ const ListItemPage: React.FC = () => {
 
               {/* Image Preview */}
               {images.length > 0 && (
-                <div className="grid grid-cols-3 md:grid-cols-5 gap-2">
+                <div className="grid grid-cols-1 gap-2">
                   {images.map((image, index) => (
                     <div key={index} className="relative">
                       <img
-                        src={image}
+                        src={URL.createObjectURL(image)}
                         alt={`Upload ${index + 1}`}
-                        className="w-full h-20 object-cover rounded-lg"
+                        className="w-full h-32 object-cover rounded-lg"
                       />
                       <button
                         type="button"
