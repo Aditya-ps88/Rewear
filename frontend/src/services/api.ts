@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ClothingItem, SwapRequest, User } from '../types';
+import { ClothingItem, SwapRequest, User, UserProfile } from '../types';
 import { mockItems, mockUsers } from '../data/mockData';
 
 const API_BASE_URL = 'http://localhost:8000/api';
@@ -82,6 +82,53 @@ export class RealApiService {
       // Fallback to mock data if API fails
       const user = mockUsers.find(u => u.id === userId);
       return user?.points || 0;
+    }
+  }
+
+  // User Profile methods
+  async getUserProfile(userId: number): Promise<UserProfile | null> {
+    try {
+      const response = await this.api.get(`/profiles/${userId}/`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+      return null;
+    }
+  }
+
+  async updateUserProfile(userId: number, profileData: Partial<UserProfile>): Promise<UserProfile> {
+    try {
+      const response = await this.api.patch(`/profiles/${userId}/`, profileData);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating user profile:', error);
+      throw error;
+    }
+  }
+
+  async uploadProfilePicture(userId: number, imageFile: File): Promise<void> {
+    try {
+      const formData = new FormData();
+      formData.append('profile_picture', imageFile);
+      
+      await axios.post(`${API_BASE_URL}/profiles/${userId}/upload_profile_picture/`, formData, {
+        headers: {
+          // Remove Content-Type header for FormData
+        },
+      });
+    } catch (error) {
+      console.error('Error uploading profile picture:', error);
+      throw error;
+    }
+  }
+
+  async getUserItems(userId: number): Promise<ClothingItem[]> {
+    try {
+      const response = await this.api.get(`/profiles/${userId}/get_user_items/`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching user items:', error);
+      return [];
     }
   }
 }
