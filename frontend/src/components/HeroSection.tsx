@@ -1,92 +1,102 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Recycle } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowRight, Recycle, Sparkles, Shirt, Leaf } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
-  const handleClick = (path: string) => {
-    console.log('Button clicked:', path);
+  const navigate = useNavigate();
+
+  const handleListItemClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const userData = localStorage.getItem('user');
+    navigate(userData ? '/list-item' : '/signup');
   };
 
   return (
-    <section className="relative bg-eco-cream py-20 overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-20 h-20 rounded-full bg-eco-green-primary"></div>
-        <div className="absolute top-32 right-20 w-16 h-16 rounded-full bg-eco-tan"></div>
-        <div className="absolute bottom-20 left-1/4 w-12 h-12 rounded-full bg-eco-green-secondary"></div>
-        <div className="absolute bottom-10 right-10 w-24 h-24 rounded-full bg-eco-brown"></div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
-          <div className="text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start mb-6">
-              <Recycle className="h-12 w-12 text-eco-green-primary mr-3" />
-              <h1 className="text-5xl lg:text-6xl font-bold text-eco-brown">
-                Eco Exchange
-              </h1>
-            </div>
-            
-            <p className="text-xl text-eco-green-primary mb-8 leading-relaxed">
-              Join the sustainable fashion revolution. Swap, trade, and discover pre-loved clothing 
-              while earning points for every eco-friendly exchange.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start relative z-10">
-              <Link
-                to="/browse"
-                onClick={() => handleClick('/browse')}
-                className="bg-eco-green-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-eco-green-primary/90 transition-colors flex items-center justify-center space-x-2 cursor-pointer"
-              >
-                <span>Start Browsing</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link
-                to="/list-item"
-                onClick={() => handleClick('/list-item')}
-                className="bg-eco-tan text-eco-brown px-8 py-3 rounded-full font-semibold hover:bg-eco-tan/80 transition-colors cursor-pointer"
-              >
-                List Your Items
-              </Link>
-            </div>
+    <section className="rewear-mesh relative overflow-hidden px-4 pb-16 pt-10 sm:px-6 lg:px-8 lg:pt-14">
+      <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="relative z-10 animate-[rise-in_600ms_ease-out]">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-eco-green-primary/20 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-eco-green-primary">
+            <Sparkles className="h-3.5 w-3.5" />
+            Community Thrift Marketplace
           </div>
-          
-          {/* Image Collage */}
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-4">
-              <div className="space-y-4">
-                <img
-                  src="https://i.pinimg.com/736x/a1/8e/7e/a18e7e47fe28fa03edb3fa8e9baaf70f.jpg"
-                  alt="Sustainable fashion"
-                  className="w-full h-48 object-cover rounded-lg shadow-md"
-                />
-                <img
-                  src="https://i.pinimg.com/736x/f7/9f/16/f79f16cc44f29010d81a5821dc1f4e43.jpg"
-                  alt="Eco clothing"
-                  className="w-full h-32 object-cover rounded-lg shadow-md"
-                />
+
+          <h1 className="rewear-display max-w-2xl text-4xl leading-tight text-eco-brown sm:text-5xl lg:text-6xl">
+            Thrift smart,
+            <span className="ml-2 text-eco-green-primary">dress better for less.</span>
+          </h1>
+
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-eco-brown/80 sm:text-lg">
+            ReWear helps you discover quality pre-loved clothes at lower prices. Swapping is available as a side feature when you want to exchange instead of buying.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <Link
+              to="/browse"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-eco-brown px-7 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-white transition-all hover:-translate-y-0.5 hover:bg-eco-brown/90"
+            >
+              Shop Thrift Deals
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+
+            <Link
+              to="/list-item"
+              onClick={handleListItemClick}
+              className="inline-flex items-center justify-center rounded-full border border-eco-green-primary/30 bg-white/70 px-7 py-3 text-sm font-semibold uppercase tracking-[0.16em] text-eco-green-primary transition-all hover:-translate-y-0.5 hover:bg-white"
+            >
+              List Your Item
+            </Link>
+          </div>
+
+          <div className="mt-8 grid max-w-xl grid-cols-3 gap-3">
+            {[
+              { label: 'Items Under Budget', value: '8.7K' },
+              { label: 'Avg. Savings', value: '42%' },
+              { label: 'Trusted Buyers', value: '4.9/5' },
+            ].map((metric) => (
+              <div
+                key={metric.label}
+                className="rewear-glass rounded-2xl px-4 py-4 shadow-[0_12px_35px_rgba(93,62,47,0.08)]"
+              >
+                <p className="rewear-display text-xl text-eco-brown">{metric.value}</p>
+                <p className="mt-1 text-xs uppercase tracking-[0.12em] text-eco-brown/65">{metric.label}</p>
               </div>
-              <div className="space-y-4 mt-8">
-                <img
-                  src="https://i.pinimg.com/1200x/ea/6e/04/ea6e042cae1220d654f74379190f203a.jpg"
-                  alt="Fashion exchange"
-                  className="w-full h-32 object-cover rounded-lg shadow-md"
-                />
-                <img
-                  src="https://i.pinimg.com/736x/5c/ca/61/5cca6184f15a60f127ef399ff3da95f1.jpg"
-                  alt="Sustainable style"
-                  className="w-full h-48 object-cover rounded-lg shadow-md"
-                />
+            ))}
+          </div>
+        </div>
+
+        <div className="relative z-10 rewear-grain animate-[rise-in_800ms_ease-out]">
+          <div className="absolute -left-6 top-16 h-24 w-24 rounded-full bg-eco-green-secondary/20 blur-2xl animate-[pulse-soft_4s_ease-in-out_infinite]" />
+          <div className="absolute -right-8 bottom-12 h-28 w-28 rounded-full bg-eco-tan/50 blur-2xl animate-[pulse-soft_5s_ease-in-out_infinite]" />
+
+          <div className="rewear-glass relative rounded-[2rem] p-5 shadow-[0_25px_70px_rgba(93,62,47,0.18)]">
+            <img
+              src="https://i.pinimg.com/1200x/ea/6e/04/ea6e042cae1220d654f74379190f203a.jpg"
+              alt="Curated sustainable fashion"
+              className="h-[420px] w-full rounded-[1.6rem] object-cover"
+            />
+
+            <div className="absolute -left-4 top-7 rounded-2xl bg-white px-4 py-3 shadow-lg animate-[float-slow_6s_ease-in-out_infinite]">
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-eco-brown/70">
+                <Recycle className="h-3.5 w-3.5 text-eco-green-primary" />
+                Best deals refreshed daily
               </div>
             </div>
-            
-            {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 bg-eco-green-secondary text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg">
-              50+ Points Earned
+
+            <div className="absolute -bottom-5 right-5 w-56 rounded-2xl bg-eco-brown px-4 py-4 text-white shadow-xl animate-[float-slow_7s_ease-in-out_infinite]">
+              <div className="mb-2 flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-eco-tan">
+                <Leaf className="h-3.5 w-3.5" />
+                Swap Corner
+              </div>
+              <p className="text-sm leading-relaxed text-white/90">
+                "Want to trade instead? List an item and swap with nearby members."
+              </p>
             </div>
-            <div className="absolute -bottom-4 -left-4 bg-eco-tan text-eco-brown px-4 py-2 rounded-full text-sm font-medium shadow-lg">
-              100% Sustainable
+
+            <div className="absolute left-5 bottom-6 rounded-xl border border-white/60 bg-white/80 px-3 py-2 text-xs font-medium text-eco-brown/80 backdrop-blur">
+              <span className="inline-flex items-center gap-1">
+                <Shirt className="h-3.5 w-3.5 text-eco-green-primary" />
+                Low-cost looks, premium vibe.
+              </span>
             </div>
           </div>
         </div>

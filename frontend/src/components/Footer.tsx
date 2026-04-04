@@ -1,104 +1,87 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Recycle, Mail, Phone, MapPin } from 'lucide-react';
+import { Recycle, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-eco-brown text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo and Slogan */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <Recycle className="h-8 w-8 text-eco-tan" />
-              <span className="text-2xl font-bold">ReWear</span>
+    <footer className="relative overflow-hidden bg-eco-brown px-4 py-14 text-white sm:px-6 lg:px-8">
+      <div className="absolute inset-0 opacity-30">
+        <div className="absolute -top-20 left-0 h-56 w-56 rounded-full bg-eco-green-secondary/35 blur-3xl" />
+        <div className="absolute -bottom-24 right-10 h-64 w-64 rounded-full bg-eco-tan/25 blur-3xl" />
+      </div>
+
+      <div className="relative mx-auto max-w-7xl">
+        <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr_0.7fr]">
+          <div>
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2">
+              <Recycle className="h-4 w-4 text-eco-tan" />
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-eco-tan">ReWear Collective</span>
             </div>
-            <p className="text-xl font-semibold text-eco-tan mb-4">
-              Swap. Save. Sustain.
+            <h3 className="rewear-display text-3xl leading-tight text-white sm:text-4xl">
+              Thrift. Save. Repeat.
+            </h3>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
+              ReWear is your community-powered thrift marketplace for quality clothes at lower prices, with swapping available when you prefer exchange.
             </p>
-            <p className="text-white/80 max-w-md">
-              Join our community of eco-conscious fashion lovers. Together, we're creating 
-              a more sustainable future, one clothing swap at a time.
-            </p>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-3">
+              <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-3 text-sm">Daily low-price drops</div>
+              <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-3 text-sm">4.9 member rating</div>
+              <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-3 text-sm">Swap option included</div>
+            </div>
           </div>
-          
-          {/* Quick Links */}
+
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-eco-tan">Quick Links</h3>
-            <ul className="space-y-2">
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-eco-tan">Explore</h4>
+            <ul className="space-y-3 text-white/80">
               <li>
-                <Link to="/about" className="text-white/80 hover:text-white transition-colors">
-                  About Us
+                <Link to="/browse" className="inline-flex items-center gap-1 hover:text-white">
+                  Browse Items
+                  <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
               </li>
               <li>
-                <Link to="/how-it-works" className="text-white/80 hover:text-white transition-colors">
-                  How It Works
+                <Link to="/list-item" className="inline-flex items-center gap-1 hover:text-white">
+                  List an Item
+                  <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
               </li>
               <li>
-                <Link to="/sustainability" className="text-white/80 hover:text-white transition-colors">
-                  Sustainability
+                <Link to="/dashboard" className="inline-flex items-center gap-1 hover:text-white">
+                  Dashboard
+                  <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
               </li>
               <li>
-                <Link to="/community" className="text-white/80 hover:text-white transition-colors">
-                  Community
+                <Link to="/help" className="inline-flex items-center gap-1 hover:text-white">
+                  Help Center
+                  <ArrowUpRight className="h-3.5 w-3.5" />
                 </Link>
               </li>
             </ul>
           </div>
-          
-          {/* Legal */}
+
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-eco-tan">Legal</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/privacy" className="text-white/80 hover:text-white transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms" className="text-white/80 hover:text-white transition-colors">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link to="/cookies" className="text-white/80 hover:text-white transition-colors">
-                  Cookie Policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact" className="text-white/80 hover:text-white transition-colors">
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-eco-tan">Connect</h4>
+            <div className="space-y-4 text-white/85">
+              <div className="flex items-start gap-2">
+                <Mail className="mt-0.5 h-4 w-4 text-eco-tan" />
+                <span>hello@rewear.com</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Phone className="mt-0.5 h-4 w-4 text-eco-tan" />
+                <span>+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="mt-0.5 h-4 w-4 text-eco-tan" />
+                <span>San Francisco, CA</span>
+              </div>
+            </div>
           </div>
         </div>
-        
-        {/* Contact Info */}
-        <div className="border-t border-white/20 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-6 mb-4 md:mb-0">
-              <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-eco-tan" />
-                <span className="text-white/80">hello@rewear.com</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-eco-tan" />
-                <span className="text-white/80">+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MapPin className="h-4 w-4 text-eco-tan" />
-                <span className="text-white/80">San Francisco, CA</span>
-              </div>
-            </div>
-            
-            <div className="text-white/60 text-sm">
-              © 2024 ReWear. All rights reserved.
-            </div>
-          </div>
+
+        <div className="mt-10 border-t border-white/20 pt-6 text-xs uppercase tracking-[0.14em] text-white/65 sm:text-sm">
+          © 2026 ReWear. Built for circular fashion.
         </div>
       </div>
     </footer>
