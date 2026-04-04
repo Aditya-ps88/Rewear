@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { ClothingItem } from '../types';
 import { apiService } from '../services/api';
 import ItemCard from '../components/ItemCard';
-import { Search, Filter, Loader2 } from 'lucide-react';
+import { Search, Loader2, Tags } from 'lucide-react';
 
 const BrowsePage: React.FC = () => {
   const [items, setItems] = useState<ClothingItem[]>([]);
@@ -45,9 +45,9 @@ const BrowsePage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-eco-brown mb-4">Browse Items</h1>
+          <h1 className="text-3xl font-bold text-eco-brown mb-4">Browse Thrift Deals</h1>
           <p className="text-eco-green-primary">
-            Discover sustainable fashion pieces ready for their next adventure
+            Find quality pre-loved clothing at lower prices. Swapping is available as an optional route.
           </p>
         </div>
 
@@ -59,7 +59,7 @@ const BrowsePage: React.FC = () => {
               <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search for items..."
+                placeholder="Search low-price styles..."
                 className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-eco-green-primary focus:border-transparent"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -73,7 +73,7 @@ const BrowsePage: React.FC = () => {
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
-                <option value="">All Categories</option>
+                <option value="">All Thrift Categories</option>
                 <option value="men">Men</option>
                 <option value="women">Women</option>
                 <option value="kids">Kids</option>
@@ -83,8 +83,8 @@ const BrowsePage: React.FC = () => {
 
             {/* Filter Button */}
             <button className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-              <Filter className="h-4 w-4" />
-              <span>More Filters</span>
+              <Tags className="h-4 w-4" />
+              <span>Deal Filters</span>
             </button>
           </div>
         </div>
@@ -98,7 +98,7 @@ const BrowsePage: React.FC = () => {
           <>
             <div className="mb-6">
               <p className="text-eco-green-primary">
-                {filteredItems.length} items found
+                {filteredItems.length} thrift picks found
                 {selectedCategory && ` in ${selectedCategory}`}
               </p>
             </div>
@@ -111,8 +111,8 @@ const BrowsePage: React.FC = () => {
 
             {filteredItems.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-gray-500 text-lg">No items found matching your criteria.</p>
-                <p className="text-gray-400 mt-2">Try adjusting your search or filters.</p>
+                <p className="text-gray-500 text-lg">No thrift picks match your current filters.</p>
+                <p className="text-gray-400 mt-2">Try broadening your search for more affordable options.</p>
               </div>
             )}
           </>

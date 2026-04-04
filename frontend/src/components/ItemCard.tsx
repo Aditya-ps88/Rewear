@@ -40,7 +40,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
 
           {item.is_featured && (
             <div className="absolute bottom-3 left-3 rounded-full bg-eco-green-primary px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
-              Featured
+              Top Deal
             </div>
           )}
         </div>
@@ -70,7 +70,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
               className="h-5 w-5 rounded-full object-cover"
             />
             <span className="text-xs text-eco-brown/70">
-              {item.owner ? `by ${item.owner.user.username}` : 'Anonymous'}
+              {item.owner ? `Seller: ${item.owner.user.username}` : 'Seller: Anonymous'}
             </span>
           </div>
 
