@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Recycle, User, Plus, LeafIcon, LucideLeaf, LogOut, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { getProfilePictureUrl } from '../lib/utils';
@@ -13,17 +13,26 @@ interface UserData {
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState<UserData | null>(null);
   const [showUserMenu, setShowUserMenu] = useState(false);
   const userMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Get user data from localStorage
     const userData = localStorage.getItem('user');
-    if (userData) {
-      setUser(JSON.parse(userData));
+
+    if (!userData) {
+      setUser(null);
+      return;
     }
-  }, []);
+
+    try {
+      setUser(JSON.parse(userData));
+    } catch {
+      setUser(null);
+      localStorage.removeItem('user');
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     // Close user menu when clicking outside
@@ -46,6 +55,15 @@ const Navbar: React.FC = () => {
     navigate('/login');
   };
 
+  const handleListItemClick = () => {
+    if (user) {
+      navigate('/list-item');
+      return;
+    }
+
+    navigate('/signup');
+  };
+
   const getProfilePicture = () => {
     // For now, use the default profile picture
     // In a real app, you'd fetch the user's profile from the backend
@@ -64,13 +82,13 @@ const Navbar: React.FC = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link 
-              to="/list-item" 
+            <button
+              onClick={handleListItemClick}
               className="flex items-center space-x-2 text-eco-brown hover:text-eco-green-primary transition-colors"
             >
               <Plus className="h-4 w-4" />
               <span>List Item</span>
-            </Link>
+            </button>
             <Link 
               to="/browse" 
               className="text-eco-brown hover:text-eco-green-primary transition-colors"

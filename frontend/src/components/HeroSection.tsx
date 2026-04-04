@@ -1,10 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, Recycle } from 'lucide-react';
 
 const HeroSection: React.FC = () => {
+  const navigate = useNavigate();
+
   const handleClick = (path: string) => {
     console.log('Button clicked:', path);
+  };
+
+  const handleListItemClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const userData = localStorage.getItem('user');
+    navigate(userData ? '/list-item' : '/signup');
   };
 
   return (
@@ -43,7 +51,10 @@ const HeroSection: React.FC = () => {
               </Link>
               <Link
                 to="/list-item"
-                onClick={() => handleClick('/list-item')}
+                onClick={(e) => {
+                  handleClick('/list-item');
+                  handleListItemClick(e);
+                }}
                 className="bg-eco-tan text-eco-brown px-8 py-3 rounded-full font-semibold hover:bg-eco-tan/80 transition-colors cursor-pointer"
               >
                 List Your Items
