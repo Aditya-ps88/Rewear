@@ -10,15 +10,15 @@ const CategoryCards: React.FC = () => {
         <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-eco-green-primary/90">
-              Discovery Deck
+              Thrift Categories
             </p>
             <h2 className="rewear-display text-3xl text-eco-brown sm:text-4xl">
-              Find your lane,
-              <span className="ml-2 text-eco-green-primary">then swap deeper</span>
+              Shop by style,
+              <span className="ml-2 text-eco-green-primary">save by default</span>
             </h2>
           </div>
           <p className="max-w-md text-sm leading-relaxed text-eco-brown/75 sm:text-base">
-            Categories are curated for fast discovery, from statement pieces to timeless everyday staples.
+            Browse affordable picks across every category, then use swap only when you want to exchange.
           </p>
         </div>
 
@@ -44,13 +44,13 @@ const CategoryCards: React.FC = () => {
 
                 <div className="absolute inset-x-0 bottom-0 z-10 p-5 sm:p-6">
                   <div className="mb-3 inline-flex rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-eco-brown">
-                    {category.count}+ active listings
+                    {category.count}+ budget listings
                   </div>
 
                   <div className="flex items-end justify-between gap-4">
                     <div>
                       <h3 className="rewear-display text-2xl text-white sm:text-3xl">{category.name}</h3>
-                      <p className="mt-1 text-sm text-white/80">Curated picks and verified uploads</p>
+                      <p className="mt-1 text-sm text-white/80">Affordable finds updated daily</p>
                     </div>
 
                     <div className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/45 bg-white/20 text-white backdrop-blur-sm transition-transform duration-300 group-hover:-translate-y-1">

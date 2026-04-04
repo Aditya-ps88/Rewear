@@ -18,16 +18,16 @@ const Footer: React.FC = () => {
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-eco-tan">ReWear Collective</span>
             </div>
             <h3 className="rewear-display text-3xl leading-tight text-white sm:text-4xl">
-              Swap. Save. Sustain.
+              Thrift. Save. Repeat.
             </h3>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-white/80 sm:text-base">
-              We are building a community-owned circular fashion network where every swap lowers waste and extends the life of great clothing.
+              ReWear is your community-powered thrift marketplace for quality clothes at lower prices, with swapping available when you prefer exchange.
             </p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-3 text-sm">12K+ items recirculated</div>
+              <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-3 text-sm">Daily low-price drops</div>
               <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-3 text-sm">4.9 member rating</div>
-              <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-3 text-sm">Zero fast-fashion mindset</div>
+              <div className="rounded-xl border border-white/20 bg-white/10 px-3 py-3 text-sm">Swap option included</div>
             </div>
           </div>
 

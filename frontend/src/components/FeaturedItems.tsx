@@ -40,15 +40,15 @@ const FeaturedItems: React.FC = () => {
         <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-eco-brown/65">
-              Curated Now
+              Best Price Drops
             </p>
             <h2 className="rewear-display text-3xl text-eco-brown sm:text-4xl">
-              Featured swaps from the community
+              Featured thrift picks from the community
             </h2>
           </div>
 
           <p className="max-w-md text-sm leading-relaxed text-eco-brown/75 sm:text-base">
-            Freshly listed pieces, selected for quality, style, and sustainability impact.
+            Fresh low-price listings selected for quality and style. Swapping stays available as an optional path.
           </p>
         </div>
 
@@ -65,14 +65,14 @@ const FeaturedItems: React.FC = () => {
                 to="/browse"
                 className="group inline-flex items-center gap-2 rounded-full border border-eco-brown/20 bg-eco-brown px-8 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all hover:-translate-y-0.5 hover:bg-eco-brown/92"
               >
-                View All Items
+                Browse More Deals
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
           </>
         ) : (
           <div className="rounded-2xl border border-dashed border-eco-brown/25 bg-white/70 p-8 text-center">
-            <p className="text-eco-brown/80">No featured items available yet. Add your first listing and kick off the swap cycle.</p>
+            <p className="text-eco-brown/80">No featured deals yet. Add an item or enable swapping for exchange-based offers.</p>
           </div>
         )}
       </div>
