@@ -29,8 +29,7 @@ const HeroSection: React.FC = () => {
             </div>
             
             <p className="text-xl text-eco-green-primary mb-8 leading-relaxed">
-              Join the sustainable fashion revolution. Swap, trade, and discover pre-loved clothing 
-              while earning points for every eco-friendly exchange.
+              Discover affordable, high-quality pre-loved clothing. Shop unique styles, save money, and make sustainable fashion choices all in one place.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start relative z-10">
