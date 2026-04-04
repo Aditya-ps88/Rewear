@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Recycle, User, Plus, LeafIcon, LucideLeaf, LogOut, ChevronDown } from 'lucide-react';
+import { User, Plus, LucideLeaf, LogOut, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
 import { getProfilePictureUrl } from '../lib/utils';
 
@@ -35,7 +35,6 @@ const Navbar: React.FC = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    // Close user menu when clicking outside
     const handleClickOutside = (event: MouseEvent) => {
       if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
         setShowUserMenu(false);
@@ -65,95 +64,91 @@ const Navbar: React.FC = () => {
   };
 
   const getProfilePicture = () => {
-    // For now, use the default profile picture
-    // In a real app, you'd fetch the user's profile from the backend
     return getProfilePictureUrl();
   };
 
+  const navLinkClass = (path: string) =>
+    `text-sm font-semibold uppercase tracking-[0.14em] transition-colors ${
+      location.pathname === path ? 'text-eco-brown' : 'text-eco-brown/65 hover:text-eco-brown'
+    }`;
+
   return (
-    <nav className="bg-eco-cream shadow-sm border-b border-eco-green-secondary/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <LucideLeaf className="h-8 w-8 text-eco-green-primary" />
-            <span className="text-xl font-bold text-eco-brown">ReWear</span>
+    <header className="sticky top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
+      <nav className="rewear-glass mx-auto flex h-16 w-full max-w-7xl items-center justify-between rounded-2xl px-4 shadow-[0_10px_40px_rgba(93,62,47,0.12)] sm:px-6">
+        <Link to="/" className="flex items-center gap-2">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-eco-green-primary/15">
+            <LucideLeaf className="h-5 w-5 text-eco-green-primary" />
+          </span>
+          <span className="rewear-display text-2xl text-eco-brown">ReWear</span>
+        </Link>
+
+        <div className="hidden items-center gap-6 md:flex">
+          <button
+            type="button"
+            onClick={handleListItemClick}
+            className="inline-flex items-center gap-1.5 rounded-full bg-eco-brown px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-white transition-all hover:-translate-y-0.5 hover:bg-eco-brown/90"
+          >
+            <Plus className="h-3.5 w-3.5" />
+            List Item
+          </button>
+
+          <Link to="/browse" className={navLinkClass('/browse')}>
+            Browse
           </Link>
-
-          {/* Navigation Links */}
-          <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={handleListItemClick}
-              className="flex items-center space-x-2 text-eco-brown hover:text-eco-green-primary transition-colors"
-            >
-              <Plus className="h-4 w-4" />
-              <span>List Item</span>
-            </button>
-            <Link 
-              to="/browse" 
-              className="text-eco-brown hover:text-eco-green-primary transition-colors"
-            >
-              Browse Items
-            </Link>
-            <Link 
-              to="/help" 
-              className="text-eco-brown hover:text-eco-green-primary transition-colors"
-            >
-              Help
-            </Link>
-          </div>
-
-          {/* User Menu / Login Button */}
-          <div className="flex items-center">
-            {user ? (
-              <div className="relative" ref={userMenuRef}>
-                <button
-                  onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-sm hover:shadow-md transition-shadow"
-                >
-                  <img 
-                    src={getProfilePicture()}
-                    alt={user.displayName || user.email}
-                    className="w-6 h-6 rounded-full object-cover"
-                  />
-                  <span className="text-eco-brown font-medium">
-                    {user.displayName || user.email.split('@')[0]}
-                  </span>
-                  <ChevronDown className="h-4 w-4 text-eco-brown" />
-                </button>
-
-                {showUserMenu && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
-                    <Link
-                      to="/dashboard"
-                      className="block px-4 py-2 text-sm text-eco-brown hover:bg-eco-cream"
-                      onClick={() => setShowUserMenu(false)}
-                    >
-                      Dashboard
-                    </Link>
-                    <button
-                      onClick={handleLogout}
-                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center space-x-2"
-                    >
-                      <LogOut className="h-4 w-4" />
-                      <span>Logout</span>
-                    </button>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Button
-                onClick={() => navigate('/login')}
-                className="bg-eco-tan text-eco-brown hover:bg-eco-tan/80 transition-colors flex items-center space-x-2"
-              >
-                <User className="h-4 w-4" />
-                <span>Login</span>
-              </Button>
-            )}
-          </div>
+          <Link to="/help" className={navLinkClass('/help')}>
+            Help
+          </Link>
         </div>
-      </div>
-    </nav>
+
+        <div className="flex items-center">
+          {user ? (
+            <div className="relative" ref={userMenuRef}>
+              <button
+                onClick={() => setShowUserMenu(!showUserMenu)}
+                className="flex items-center gap-2 rounded-full border border-eco-brown/10 bg-white/75 px-3 py-2 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <img
+                  src={getProfilePicture()}
+                  alt={user.displayName || user.email}
+                  className="h-7 w-7 rounded-full object-cover"
+                />
+                <span className="max-w-24 truncate text-sm font-semibold text-eco-brown">
+                  {user.displayName || user.email.split('@')[0]}
+                </span>
+                <ChevronDown className="h-4 w-4 text-eco-brown" />
+              </button>
+
+              {showUserMenu && (
+                <div className="absolute right-0 mt-2 w-44 overflow-hidden rounded-xl border border-eco-brown/10 bg-white shadow-lg">
+                  <Link
+                    to="/dashboard"
+                    className="block px-4 py-2.5 text-sm font-medium text-eco-brown hover:bg-eco-cream"
+                    onClick={() => setShowUserMenu(false)}
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-red-600 hover:bg-red-50"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Button
+              onClick={() => navigate('/login')}
+              className="rounded-full bg-eco-tan px-5 text-eco-brown hover:bg-eco-tan/80"
+            >
+              <User className="mr-2 h-4 w-4" />
+              Login
+            </Button>
+          )}
+        </div>
+      </nav>
+    </header>
   );
 };
 
